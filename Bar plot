@@ -1,0 +1,34 @@
+import matplotlib.pyplot as plt
+from collections import Counter
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
+# Convert the text to lowercase
+text = text.lower()
+
+# Tokenize the text into individual words
+tokens = word_tokenize(text)
+
+# Remove stop words from the tokens
+stop_words = set(stopwords.words('english'))
+filtered_tokens = [word for word in tokens if word not in stop_words]
+
+# Count the frequency of each term
+word_counter = Counter(filtered_tokens)
+
+# Get the top 25 frequent terms
+top_terms = word_counter.most_common(25)
+
+# Extract the terms and frequencies
+terms = [term for term, freq in top_terms]
+frequencies = [freq for term, freq in top_terms]
+
+# Create a bar plot
+plt.figure(figsize=(12, 6))
+plt.bar(range(len(terms)), frequencies, tick_label=terms)
+plt.xticks(rotation=90)
+plt.xlabel('Terms')
+plt.ylabel('Frequency')
+plt.title('Top 25 Frequent Terms')
+plt.tight_layout()
+plt.show()
