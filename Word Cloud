@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud,STOPWORDS
+
+# Start with one review:
+text = "C:/Users/acer/Downloads/un_declaration_hr_text_data.txt"
+
+# Set stopwords to exclude common words:
+stopwords = set(STOPWORDS)
+
+# Create and generate a word cloud image excluding stopwords:
+wordcloud = WordCloud(stopwords=stopwords).generate(text)
+
+# Create and generate a word cloud image:
+wordcloud = WordCloud().generate(text)
+
+# Display the generated image:
+plt.imshow(wordcloud, interpolation='bilinear')
+plt.axis("off")
+plt.show()
